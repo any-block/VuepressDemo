@@ -2,7 +2,7 @@
 
 项目构建的全过程：
 
-1. 项目创建
+1. 先搭建vuepress项目
 
 ```shell
 # vuepress2
@@ -32,6 +32,8 @@ $ echo -e "\n[list2table]\n\n- 1\n- 2\n  - 3\n  - 4\n" >> ./docs/README.md
 
 3. 安装AnyBlock
 
+就像使用普通的mdit插件那样使用
+
 ```bash
 $ pnpm install -D jsdom
 $ pnpm install -D any-block-converter-markdown-it@3.1.3-beta11 # 不能低于这个版本，否则不可用
@@ -40,9 +42,9 @@ $ pnpm install -D any-block-converter-markdown-it@3.1.3-beta11 # 不能低于这
 在 vuepress 项目中的 `.vuepress/config.ts` 文件中，添加：
 
 ```typescript
-import ab_mdit from "any-block-converter-markdown-it" // +
+import ab_mdit from "any-block-converter-markdown-it" // [!code ++]
 
-// + 这里需要自 pnpm install jsdom，不知道为什么这部分不能在模块里依赖，会有bug......
+// [!code ++] 这里需要自 pnpm install jsdom，不知道为什么这部分不能在模块里依赖，会有bug......
 import jsdom from "jsdom"
 const { JSDOM } = jsdom
 const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
@@ -63,16 +65,16 @@ global.HTMLScriptElement = dom.window.HTMLScriptElement
 dom.window.scrollTo = ()=>{} // @warn 若缺少该行，编译警告：Error: Not implemented: window.scrollTo*/
 
 export default defineUserConfig({
-  extendsMarkdown: (md: markdownit) => { // + 就像使用普通的mdit插件那样使用
-    md.use(ab_mdit)                      // +
-  }                                      // +
+  extendsMarkdown: (md: markdownit) => { // [!code ++]
+    md.use(ab_mdit)                      // [!code ++]
+  }                                      // [!code ++]
 })
 ```
 
 4. 检查
 
 ```typescript
-$ pnpm dcos:dev
+$ pnpm docs:dev
 ```
 
 > [!warning]
