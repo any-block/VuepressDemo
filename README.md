@@ -24,61 +24,48 @@ $ pnpm docs:dev
 # $ pnpm add -D sass (中途报错让我手动安了个sass)
 ```
 
-2. 修改文档内容
+2. 添加示例内容 (方便查看是否成功)
 
 ```shell
 $ echo -e "\n[list2table]\n\n- 1\n- 2\n  - 3\n  - 4\n" >> ./docs/README.md
 ```
 
-3. 安装AnyBlock
+3. 安装使用AnyBlock
 
 就像使用普通的mdit插件那样使用
 
+3.1. 安装依赖
+
 ```bash
-$ pnpm install -D jsdom
-$ pnpm install -D any-block-converter-markdown-it@3.1.3-beta11 # 不能低于这个版本，否则不可用
+$ pnpm install -D markdown-it-any-block@latest
 ```
 
-在 vuepress 项目中的 `.vuepress/config.ts` 文件中，添加：
+3.2. 在 vuepress 项目中的 `.vuepress/config.ts` 文件中，添加：
 
 ```typescript
-import ab_mdit from "any-block-converter-markdown-it" // [!code ++]
+import { ab_mdit, jsdom_init } from "markdown-it-any-block"
+jsdom_init()
 
-// [!code ++] 这里需要自 pnpm install jsdom，不知道为什么这部分不能在模块里依赖，会有bug......
-import jsdom from "jsdom"
-const { JSDOM } = jsdom
-const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
-  url: 'http://localhost/', // @warn 若缺少该行，则在mdit+build环境下，编译报错
-});
-// @ts-ignore 不能将类型“DOMWindow”分配给类型“Window & typeof globalThis”
-global.window = dom.window
-global.history = dom.window.history // @warn 若缺少该行，则在mdit+build环境下，编译报错：ReferenceError: history is not defined
-global.document = dom.window.document
-global.NodeList = dom.window.NodeList
-global.HTMLElement = dom.window.HTMLElement
-global.HTMLDivElement = dom.window.HTMLDivElement
-global.HTMLPreElement = dom.window.HTMLPreElement
-global.HTMLQuoteElement = dom.window.HTMLQuoteElement
-global.HTMLTableElement = dom.window.HTMLTableElement
-global.HTMLUListElement = dom.window.HTMLUListElement
-global.HTMLScriptElement = dom.window.HTMLScriptElement
-dom.window.scrollTo = ()=>{} // @warn 若缺少该行，编译警告：Error: Not implemented: window.scrollTo*/
+...
 
-export default defineUserConfig({
-  extendsMarkdown: (md: markdownit) => { // [!code ++]
-    md.use(ab_mdit)                      // [!code ++]
-  }                                      // [!code ++]
-})
+const userConfig: UserConfig = {
+  extendsMarkdown: (md: markdownit) => {
+    md.use(ab_mdit)
+  }
+}
 ```
+
+3.3. 添加样式文件
+
+> [!WARNING]
+> 
+> 注意，构建出来的只有对应的dom结构，而没有样式。因为纯markdown-it插件是不含样式的（除非用内联样式），自己引用一下就好
+> 
+> 例如vuepress中可以创建/修改 `src/.vuepress/styles/index.scss`
+> 并添加: `@import '../../../node_modules/markdown-it-any-block/styles';`
 
 4. 检查
 
 ```typescript
 $ pnpm docs:dev
 ```
-
-> [!warning]
-> 
-> 注意，构建出来的只有对应的dom结构，而没有样式。因为纯markdown-it插件是不含样式的（除非用内联样式），自己引用一下就好
-> 
-> 对应的样式位置：`./node_modules/any-block-converter-markdown-it/src/style/styles.scss`
