@@ -1,6 +1,13 @@
 # README
 
-项目构建的全过程：
+## 构建该demo项目
+
+```typescript
+$ pnpm install
+$ pnpm docs:dev
+```
+
+## 从零创建该项目
 
 1. 先搭建vuepress项目
 
@@ -40,7 +47,9 @@ $ echo -e "\n[list2table]\n\n- 1\n- 2\n  - 3\n  - 4\n" >> ./docs/README.md
 $ pnpm install -D markdown-it-any-block@latest
 ```
 
-3.2. 在 vuepress 项目中的 `.vuepress/config.ts` 文件中，添加：
+3.2. 使用插件
+
+在 vuepress 项目中的 `.vuepress/config.ts` 文件中，添加：
 
 ```typescript
 import { ab_mdit, jsdom_init } from "markdown-it-any-block"
@@ -55,7 +64,7 @@ const userConfig: UserConfig = {
 }
 ```
 
-3.3. 添加样式文件
+3.3. 使用样式文件
 
 > [!WARNING]
 > 
