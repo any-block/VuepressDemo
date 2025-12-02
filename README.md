@@ -76,6 +76,8 @@ const userConfig: UserConfig = {
 > 
 > 例如vuepress中可以创建/修改 `src/.vuepress/styles/index.scss`
 > 并添加: `@import '../../../node_modules/markdown-it-any-block/styles';`
+> 
+> 例如vitepress可以添加 [theme](https://github.com/any-block/VitePressDemo/blob/main/.vitepress/theme) 文件夹及里面的内容
 
 4. 检查
 
