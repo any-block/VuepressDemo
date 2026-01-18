@@ -6,6 +6,7 @@ import { ab_mdit, jsdom_init } from "markdown-it-any-block"
 jsdom_init()
 
 export default defineUserConfig({
+  base: '/VuepressDemo/',
   lang: 'en-US',
 
   title: 'VuePress',

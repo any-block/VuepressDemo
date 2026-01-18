@@ -15,8 +15,8 @@ importers:
         specifier: ^2.0.0-rc.11
         version: 2.0.0-rc.52(markdown-it@14.1.0)(sass@1.79.4)(typescript@5.6.2)(vuepress@2.0.0-rc.17(@vuepress/bundler-vite@2.0.0-rc.7(@types/node@22.7.4)(sass@1.79.4)(typescript@5.6.2))(typescript@5.6.2)(vue@3.5.10(typescript@5.6.2)))
       markdown-it-any-block:
-        specifier: ^3.3.3
-        version: 3.3.3(markdown-it@14.1.0)
+        specifier: ^3.3.8
+        version: 3.3.8(markdown-it@14.1.0)
       sass:
         specifier: ^1.79.4
         version: 1.79.4
@@ -1140,8 +1140,8 @@ packages:
       '@types/markdown-it': '*'
       markdown-it: '*'
 
-  markdown-it-any-block@3.3.3:
-    resolution: {integrity: sha512-It3VdS3ocWd7398nnAABx9AFy9K/bzG26fO6y4SJ4ocOVoFldomTLRYLPYJgaucvD4RF0FJhsonTcUOL85TYuQ==}
+  markdown-it-any-block@3.3.8:
+    resolution: {integrity: sha512-Z2EfX4fv9CNCelPeeNN8BpnkL5qRcobAXAcX0VXZpo0Gk3iPBWJF6yFHf6yGWlEyopVTvWEN4LN7MRIk4LzQuQ==}
     peerDependencies:
       markdown-it: ^14.1.0
 
@@ -2857,7 +2857,7 @@ snapshots:
       '@types/markdown-it': 14.1.2
       markdown-it: 14.1.0
 
-  markdown-it-any-block@3.3.3(markdown-it@14.1.0):
+  markdown-it-any-block@3.3.8(markdown-it@14.1.0):
     dependencies:
       jsdom: 26.1.0
       markdown-it: 14.1.0
