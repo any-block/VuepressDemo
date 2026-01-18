@@ -3,7 +3,7 @@ import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 
 import { ab_mdit, jsdom_init } from "markdown-it-any-block"
-jsdom_init()
+jsdom_init(false)
 
 export default defineUserConfig({
   base: '/VuepressDemo/',
